@@ -1,0 +1,15 @@
+{
+  "id": "9dc946df-c4c9-405d-9162-4fc8017a4892",
+  "name": "Classification",
+  "description": null,
+  "dashboard": {
+    "name": "Classification",
+    "panels": [],
+    "tabs": [],
+    "tab_id_to_panel_ids": {}
+  },
+  "team_id": null,
+  "date_from": null,
+  "date_to": null,
+  "created_at": "2024-07-29T20:23:53.590084"
+}

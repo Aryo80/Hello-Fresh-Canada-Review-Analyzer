@@ -1,0 +1,7 @@
+dependencies:
+- numpy
+- scikit-learn
+- matplotlib
+- pyyaml
+python:
+  version: '3.8'

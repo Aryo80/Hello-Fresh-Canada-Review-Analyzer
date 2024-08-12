@@ -1,0 +1,32 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+myenv/
+.env
+
+# MLflow logs and models
+mlruns/
+*.db
+*.pkl
+
+
+
+# Docker and IDE files
+.vscode/
+.idea/
+*.log
+
+# MacOS and Windows system files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Include .mp4 files in image directory
+!image/*.mp4
+!mlflow.db

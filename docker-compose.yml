@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: ml_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/mlops_project
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - mlflow
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: mlflow_server
+    environment:
+      - MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+    ports:
+      - "8585:5000"
+    volumes:
+      - ./mlflow:/mlflow
+    command: mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlflow --host 0.0.0.0

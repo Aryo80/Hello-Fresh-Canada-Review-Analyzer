@@ -1,0 +1,11 @@
+python -m venv myenv
+
+
+source myenv/Scripts/activate
+
+pip install -r requirements.txt
+
+evidently ui --workspace hello_fresh_canada
+
+
+mlflow ui --backend-store-uri sqlite:///mlflow.db --port 1234
