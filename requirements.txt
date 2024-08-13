@@ -1,0 +1,9 @@
+numpy
+scikit-learn
+matplotlib
+evidently
+prefect
+mlflow
+seaborn
+nltk
+wordcloud
