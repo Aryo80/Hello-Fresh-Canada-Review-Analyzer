@@ -155,7 +155,8 @@ The **end_to_end_model_orchestration_flow** function orchestrates the entire pip
 - **Model Training, Evaluation and Experimenting**: Trains a Random Forest model and evaluates its performance.
 - **Dashboard Creation**: Creates and updates a dashboard project with the results.
 #
-<video controls src="image/prefect.mp4" title="Title"></video>
+![Example GIF](image/prefect.gif)
+
 
 
 
@@ -173,10 +174,12 @@ The **end_to_end_model_orchestration_flow** function orchestrates the entire pip
 - **Function**: `predict_current_data_batch(current, month)`
   - Applies the trained Random Forest model to new data for a specified month.
   - Logs accuracy, confusion matrices, precision-recall curves, and ROC curves to MLflow.
+
+
 #
-<video controls src="image/mlflow.mp4" title="Title"></video>
-#
-[Download the video](https://github.com/Aryo80/Hello-Fresh-Canada-Review-Analyzer/releases/download/v1.0.0/mlflow.mp4)
+
+![Example GIF](image/mlflow.gif)
+
 
 
 ## Project Monitoring and Dashboard Creation with Evidently
@@ -220,7 +223,8 @@ column_mapping = ColumnMapping(
 - **Test Suite Panels**: Show the results of the data drift tests.
 
 #
-<video controls src="image/dashboard.mp4" title="Title"></video>
+![Example GIF](image/evidently.gif)
+
 
   
 
