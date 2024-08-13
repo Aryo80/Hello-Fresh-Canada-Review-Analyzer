@@ -2,8 +2,8 @@ import warnings
 from evidently.ui.workspace import Workspace, WorkspaceBase
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 warnings.filterwarnings("ignore")
-from prefect import task, flow
-
+from prefect import flow
+from prefect import task
 
 import mlflow
 import datetime
