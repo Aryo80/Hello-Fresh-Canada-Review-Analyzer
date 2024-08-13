@@ -175,7 +175,7 @@ The **end_to_end_model_orchestration_flow** function orchestrates the entire pip
   - Logs accuracy, confusion matrices, precision-recall curves, and ROC curves to MLflow.
 #
 <video controls src="image/mlflow.mp4" title="Title"></video>
-
+[Watch the video](image/mlflow.mp4)
 
 
 
