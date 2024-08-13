@@ -175,8 +175,8 @@ The **end_to_end_model_orchestration_flow** function orchestrates the entire pip
   - Logs accuracy, confusion matrices, precision-recall curves, and ROC curves to MLflow.
 #
 <video controls src="image/mlflow.mp4" title="Title"></video>
-
-
+#
+[Download the video](https://github.com/Aryo80/Hello-Fresh-Canada-Review-Analyzer/releases/download/v1.0.0/mlflow.mp4)
 
 
 ## Project Monitoring and Dashboard Creation with Evidently
