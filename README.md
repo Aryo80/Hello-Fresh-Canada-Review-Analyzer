@@ -223,9 +223,13 @@ column_mapping = ColumnMapping(
 - **Test Suite Panels**: Show the results of the data drift tests.
 
 #
+
 ![Example GIF](image/Evidently.gif)
 
 
-  
+
+
+
+
 
 
