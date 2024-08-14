@@ -5,5 +5,5 @@ evidently
 prefect
 mlflow
 seaborn
-nltk
+nltk==3.8.1
 wordcloud

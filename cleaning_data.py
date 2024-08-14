@@ -7,13 +7,26 @@ from nltk.stem import WordNetLemmatizer
 import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
 from prefect import task
-sid = SentimentIntensityAnalyzer()
+# Set the path for NLTK data
+custom_nltk_data_path = '/workspaces/Hello-Fresh-Canada-Review-Analyzer/nltk_data'
+nltk.data.path.append(custom_nltk_data_path)
+# Initialize SentimentIntensityAnalyzer
+
+
+def ensure_nltk_resources():
+    try:
+        # Ensure the necessary NLTK resources are downloaded
+        nltk.download('stopwords', download_dir=custom_nltk_data_path, quiet=True)
+        nltk.download('punkt', download_dir=custom_nltk_data_path, quiet=True)
+        nltk.download('wordnet', download_dir=custom_nltk_data_path, quiet=True)
+        nltk.download('vader_lexicon', download_dir=custom_nltk_data_path, quiet=True)
+        print("NLTK resources downloaded successfully.")
+    except Exception as e:
+        print(f"Error downloading NLTK resources: {e}")
 
 # Ensure the necessary NLTK resources are downloaded
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('vader_lexicon')  # For SentimentIntensityAnalyzer
+ensure_nltk_resources()
+sid = SentimentIntensityAnalyzer()
 
 # Task to ingest data from a CSV file
 @task
