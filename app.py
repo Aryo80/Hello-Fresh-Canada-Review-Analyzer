@@ -58,6 +58,7 @@ def create_dashboard_project(workspace: str,current,reference):
 
         print(f"Added report and suite for month {month}")
     print(f"Project created in workspace: {WORKSPACE}")
+    
 @flow
 def end_to_end_model_orchestration_flow(input_file):
     df = ingest_data(input_file)
