@@ -69,40 +69,6 @@ def cleanup_files():
 
 
 
-def process_file():
-    """
-    Check if the file exists, read it into a DataFrame, 
-    and find the maximum date from the 'Date' column.
-
-    Parameters:
-    file_path (str): The path to the file to process.
-
-    Returns:
-    datetime.date: The maximum date found in the 'Date' column or None if the file does not exist.
-    """
-    file_path = os.path.join('./data', 'Hello_Fresh_ca.csv')
-    if os.path.isfile(file_path):
-        # Open the file and read it into a DataFrame
-        df = pd.read_csv(file_path)
-
-        # Assuming the date is in a column named 'Date', parse it as a datetime object
-        df['Date'] = df['Date'].str.rstrip("Z")  # Remove the trailing 'Z'
-        df['Date'] = pd.to_datetime(df['Date'])  # Convert to datetime format
-
-        # Find the maximum date in the 'Date' column
-        max_date = df['Date'].max()
-        start_date = max_date.date()
-
-        print(f"File '{os.path.basename(file_path)}' exists. Start Date is  {start_date}")
-        print(f"Start date set to the maximum date in the file: {start_date.strftime('%d-%m-%Y')}")
-
-        return start_date
-    else:
-        print(f"File '{os.path.basename(file_path)}' does not exist. Set the start date manually.")
-        return None
-
-
-
 def process_file(directory='./data'):
     """
     Check for CSV files in the specified directory with 'hello' in the file name,
