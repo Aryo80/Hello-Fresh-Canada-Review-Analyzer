@@ -30,8 +30,30 @@ sid = SentimentIntensityAnalyzer()
 
 # Task to ingest data from a CSV file
 @task
-def ingest_data(filepath):
-    return pd.read_csv(filepath)
+def ingest_data(directory='./data'):
+    """
+    Ingest the first CSV file found in the specified directory that includes 'hello' in its name.
+
+    Parameters:
+    directory (str): The path to the directory containing the CSV files. Default is './data'.
+
+    Returns:
+    DataFrame: The DataFrame containing the data from the first matching file.
+    """
+    # List all files in the directory
+    all_files = os.listdir(directory)
+    
+    # Iterate over the files to find one that includes 'hello' in its name
+    for file_name in all_files:
+        if 'hello' in file_name.lower() and file_name.endswith('.csv'):
+            file_path = os.path.join(directory, file_name)
+            print(f"Reading file: {file_name}")
+            return pd.read_csv(file_path)
+    
+    # If no matching file is found, return None or raise an exception
+    print("No file found that includes 'hello' in the name.")
+    return None
+
 
 # Task to remove duplicates and handle missing values
 @task
@@ -64,6 +86,7 @@ def clean_text(text):
 # Task to preprocess the DataFrame
 @task
 def preprocess_dataframe(df):
+    df['Date'] = pd.to_datetime(df['Date'], format='ISO8601', errors='coerce')
     df['cleaned_content'] = df['Content'].apply(clean_text)
     df['cleaned_header'] = df['Header'].apply(clean_text)
     df['Rating'] = df['Rate'].apply(lambda x: int(x.split()[1]))

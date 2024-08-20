@@ -7,10 +7,16 @@ from prefect import task
 
 import mlflow
 import datetime
+
+from web_scraping_data import process_file 
+from web_scraping_data import scrape_reviews 
+
 from graph_generation import  generate_plot
 from graph_generation import generate_barplot
 from graph_generation import generate_wordcloud
 from graph_generation import generate_multiple_barplots
+
+
 
 from model_experiment import train_evaluate_rf_model
 from model_experiment import vectorize_data
@@ -29,6 +35,8 @@ from report_generation import create_monthly_data_quality_report
 from report_generation import create_project
 from report_generation import create_monthly_data_drift_test_suite
 
+
+start_date = process_file()
 # Set the MLflow tracking URI to your desired backend (e.g., SQLite, local filesystem)
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
 # Set the experiment name; this will create a new experiment if it doesn't exist
@@ -61,6 +69,7 @@ def create_dashboard_project(workspace: str,current,reference):
     
 @flow
 def end_to_end_model_orchestration_flow(input_file):
+    df = scrape_reviews(start_date)
     df = ingest_data(input_file)
     df = remove_duplicates_and_handle_missing_values(df)
     df = preprocess_dataframe(df)
@@ -83,4 +92,4 @@ def end_to_end_model_orchestration_flow(input_file):
 
 # Example usage
 if __name__ == "__main__":
-     end_to_end_model_orchestration_flow('data/Hello_Fresh_ca.csv')
+     end_to_end_model_orchestration_flow('./data')
