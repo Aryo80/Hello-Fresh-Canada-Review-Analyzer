@@ -25,14 +25,16 @@ tmux split-window -v -t my_session:0.0
 # Set layout to tiled to distribute panes evenly
 tmux select-layout -t my_session tiled
 
-# Run Evidently UI in the first pane
-tmux send-keys -t my_session:0.0 'source myenv/bin/activate && evidently ui --workspace hello_fresh_canada --port 8000' C-m
-
-# Run MLflow UI in the second pane
-tmux send-keys -t my_session:0.1 'source myenv/bin/activate && mlflow ui --backend-store-uri sqlite:///mlflow.db --port 8585' C-m
 
 # Run Prefect service in the third pane with explicit port 4200
-tmux send-keys -t my_session:0.2 'source myenv/bin/activate && prefect server start --port 4200' C-m
+sleep 3
+tmux send-keys -t my_session:0.2 'source myenv/bin/activate && prefect server start' C-m
+# Run Evidently UI in the first pane
+sleep 3
+tmux send-keys -t my_session:0.0 'source myenv/bin/activate && evidently ui --workspace hello_fresh_canada --port 8000' C-m
+# Run MLflow UI in the second pane
+sleep 3
+tmux send-keys -t my_session:0.1 'source myenv/bin/activate && mlflow ui --backend-store-uri sqlite:///mlflow.db --port 8585' C-m
 
 # Create a new window for running the app
 tmux new-window -t my_session:1 'source myenv/bin/activate && python app.py'
