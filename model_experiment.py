@@ -15,11 +15,14 @@ import numpy as np
 import os 
 
 @task
-def predict_current_data_batch(current,month):
+def predict_current_data_batch(current,month,vectorizer):
     mlflow.set_experiment("batch_analysis")
     # Start a new MLflow run and log metrics
     current_batch = current[current['month'] == month]
-    X, y, vectorizer = vectorize_data(current_batch)  
+    
+    X = current_batch['text']
+    y = current_batch['compound_category']
+    X = vectorizer.transform(X) 
 
     with mlflow.start_run(run_name=month, description="Evaluating model on random simulated data"):
         mlflow.set_experiment("hello-fresh-canada")
