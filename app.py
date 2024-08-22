@@ -41,13 +41,13 @@ start_date = process_file()
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
 # Set the experiment name; this will create a new experiment if it doesn't exist
 mlflow.set_experiment("hello-fresh-canada")
-reference_date = '2024-01-01'
+reference_date = '2024-06-01'
 
 WORKSPACE = "hello_fresh_canada"
 PROJECT_NAME = "hello_fresh_canada"
 PROJECT_DESCRIPTION = "Test project using Bank Marketing dataset"
 
-def create_dashboard_project(workspace: str,current,reference):
+def create_dashboard_project(workspace: str,current,reference,vectorizer):
     ws = Workspace.create(workspace)
     project = create_project(ws,PROJECT_NAME, PROJECT_DESCRIPTION)
 
@@ -55,7 +55,7 @@ def create_dashboard_project(workspace: str,current,reference):
 
     for month in months:
         print(month)
-        predict_current_data_batch(current,month)
+        predict_current_data_batch(current,month,vectorizer)
         report = create_monthly_data_quality_report(month,current,reference)
         if report is not None:
             ws.add_report(project.id, report)
@@ -87,7 +87,7 @@ def end_to_end_model_orchestration_flow(input_file):
     rf_model, rf_cm = train_evaluate_rf_model(X, y,reference)
 
 #
-    create_dashboard_project(WORKSPACE,current,reference)
+    create_dashboard_project(WORKSPACE,current,reference,vectorizer)
     return df, multiple_barplots_path
 
 # Example usage
